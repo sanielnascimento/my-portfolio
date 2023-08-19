@@ -51,12 +51,12 @@ export const Project = (): JSX.Element => {
               css={{ marginBottom: "$3" }}
               color="grey4"
             >
-              {repository.name}
+              {repository.name.split("-").map(x => x[0].toUpperCase()+x.slice(1)).join(" ")}
             </ProjectTitle>
 
             <ProjectStack>
               <Text type="body2" color="grey2">
-                Primary Language:
+                Principal Linguagem:
               </Text>
               {repository.language ? (
                 <ProjectStackTech>
@@ -67,7 +67,7 @@ export const Project = (): JSX.Element => {
               ) : (
                 <ProjectStackTech>
                   <Text color="grey2" type="body2">
-                    Primary language not identified
+                    Linguagem não identificada
                   </Text>
                 </ProjectStackTech>
               )}
@@ -78,14 +78,11 @@ export const Project = (): JSX.Element => {
             </Text>
             <ProjectLinks>
               <ProjectLink target="_blank" href={repository.html_url}>
-                <FaGithub /> Github Code
+                <FaGithub /> Código no Github
               </ProjectLink>
               {repository.homepage && (
-                <ProjectLink
-                  target="_blank"
-                  href={`https://${repository.homepage}`}
-                >
-                  <FaShare /> See demo
+                <ProjectLink target="_blank" href={`${repository.homepage}`}>
+                  <FaShare /> Visitar projeto
                 </ProjectLink>
               )}
             </ProjectLinks>
